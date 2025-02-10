@@ -341,6 +341,107 @@ const (
 	ImageStatusHighres ImageStatus = "highres_scan"
 )
 
+// ScryfallPromoType is A category of promo cards this card falls into.
+type ScryfallPromoType interface {
+	isScryfallPromoType()
+}
+
+type ScryfallFrameAppearance string
+
+func (ScryfallFrameAppearance) isScryfallPromoType() {}
+
+const (
+	Scroll      ScryfallFrameAppearance = "scroll"
+	Poster      ScryfallFrameAppearance = "poster"
+	Dossier     ScryfallFrameAppearance = "dossier"
+	RavnicaCity ScryfallFrameAppearance = "ravnicacity"
+	Magnified   ScryfallFrameAppearance = "magnified"
+)
+
+type ScryfallExtendedFinish string
+
+func (ScryfallExtendedFinish) isScryfallPromoType() {}
+
+const (
+	Glossy          ScryfallExtendedFinish = "glossy"
+	SilverFoil      ScryfallExtendedFinish = "silverfoil"
+	ConfettiFoil    ScryfallExtendedFinish = "confettifoil"
+	GalaxyFoil      ScryfallExtendedFinish = "galaxyfoil"
+	HaloFoil        ScryfallExtendedFinish = "halofoil"
+	SurgeFoil       ScryfallExtendedFinish = "surgefoil"
+	DoubleRainbow   ScryfallExtendedFinish = "doublerainbow"
+	Textured        ScryfallExtendedFinish = "textured"
+	Oilslick        ScryfallExtendedFinish = "oilslick"
+	NeonInk         ScryfallExtendedFinish = "neonink"
+	Gilded          ScryfallExtendedFinish = "gilded"
+	StepAndCompleat ScryfallExtendedFinish = "stepandcompleat"
+	Embossed        ScryfallExtendedFinish = "embossed"
+	Ampersand       ScryfallExtendedFinish = "ampersand"
+	InvisibleInk    ScryfallExtendedFinish = "invisibleink"
+)
+
+type ScryfallCardStock string
+
+func (ScryfallCardStock) isScryfallPromoType() {}
+
+const (
+	Thick   ScryfallCardStock = "thick"
+	Plastic ScryfallCardStock = "plastic"
+)
+
+type ScryfallPrintAttribute string
+
+func (ScryfallPrintAttribute) isScryfallPromoType() {}
+
+const (
+	Alchemy            ScryfallPrintAttribute = "alchemy"
+	ArenaLeague        ScryfallPrintAttribute = "arenaleague"
+	BoosterFun         ScryfallPrintAttribute = "boosterfun"
+	BoxTopper          ScryfallPrintAttribute = "boxtopper"
+	BrawlDeck          ScryfallPrintAttribute = "brawldeck"
+	BringAFriend       ScryfallPrintAttribute = "bringafriend"
+	Bundle             ScryfallPrintAttribute = "bundle"
+	BuyABox            ScryfallPrintAttribute = "buyabox"
+	CommanderParty     ScryfallPrintAttribute = "commanderparty"
+	Concept            ScryfallPrintAttribute = "concept"
+	Convention         ScryfallPrintAttribute = "convention"
+	DateStamped        ScryfallPrintAttribute = "datestamped"
+	DraculaSeries      ScryfallPrintAttribute = "draculaseries"
+	DraftWeekend       ScryfallPrintAttribute = "draftweekend"
+	Duels              ScryfallPrintAttribute = "duels"
+	Event              ScryfallPrintAttribute = "event"
+	FNM                ScryfallPrintAttribute = "fnm"
+	GameDay            ScryfallPrintAttribute = "gameday"
+	GiftBox            ScryfallPrintAttribute = "giftbox"
+	GodzillaSeries     ScryfallPrintAttribute = "godzillaseries"
+	InStore            ScryfallPrintAttribute = "instore"
+	IntroPack          ScryfallPrintAttribute = "intropack"
+	JPWalker           ScryfallPrintAttribute = "jpwalker"
+	JudgeGift          ScryfallPrintAttribute = "judgegift"
+	League             ScryfallPrintAttribute = "league"
+	MediaInsert        ScryfallPrintAttribute = "mediainsert"
+	MoonlitLand        ScryfallPrintAttribute = "moonlitland"
+	OpenHouse          ScryfallPrintAttribute = "openhouse"
+	PlaneswalkerDeck   ScryfallPrintAttribute = "planeswalkerdeck"
+	PlayerRewards      ScryfallPrintAttribute = "playerrewards"
+	PlayPromo          ScryfallPrintAttribute = "playpromo"
+	PremiereShop       ScryfallPrintAttribute = "premiereshop"
+	Prerelease         ScryfallPrintAttribute = "prerelease"
+	PromoPack          ScryfallPrintAttribute = "promopack"
+	Rebalanced         ScryfallPrintAttribute = "rebalanced"
+	Release            ScryfallPrintAttribute = "release"
+	SChineseAltArt     ScryfallPrintAttribute = "schinesealtart"
+	Serialized         ScryfallPrintAttribute = "serialized"
+	SetExtension       ScryfallPrintAttribute = "setextension"
+	SetPromo           ScryfallPrintAttribute = "setpromo"
+	Stamped            ScryfallPrintAttribute = "stamped"
+	StarterDeck        ScryfallPrintAttribute = "starterdeck"
+	StoreChampionship  ScryfallPrintAttribute = "storechampionship"
+	ThemePack          ScryfallPrintAttribute = "themepack"
+	Tourney            ScryfallPrintAttribute = "tourney"
+	WizardsPlayNetwork ScryfallPrintAttribute = "wizardsplaynetwork"
+)
+
 // Card represents individual Magic: The Gathering cards that players could
 // obtain and add to their collection (with a few minor exceptions).
 type Card struct {
@@ -568,7 +669,7 @@ type Card struct {
 	Preview Preview `json:"preview"`
 
 	// PromoTypes is an array of promo types for this card, if any.
-	PromoTypes []string `json:"promo_types,omitempty"`
+	PromoTypes []ScryfallPromoType `json:"promo_types,omitempty"`
 
 	// BorderColor is this card's border color: black, borderless, gold,
 	// silver, or white.
